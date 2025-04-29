@@ -4,12 +4,23 @@ import { UserData } from "../types";
 interface LoginProps {
   onLoginSuccess: (userData: UserData) => void;
 }
-const Login = ({ onLoginSuccess }) => {
+const Login:React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [rollNumber, setRollNumber] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit = (e:React.FormEvent) => {
+    e.preventDefault();
+    setError('');
 
+    if (!rollNumber || !name) {
+      setError('put both');
+      return;
+    }
+    setIsLoading(true);
+    const userData = { rollNumber, name };
+    onLoginSuccess(userData);
+  };
   return (
     <div className="login-container">
       <h1>Login</h1>
