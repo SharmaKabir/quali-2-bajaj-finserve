@@ -8,6 +8,6 @@ const Login = ({ onLoginSuccess })=>{
     const [rollNumber, setRollNumber] = useState('');
     const [name, setName] = useState('');
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading]=useState(tru);
+    const [isLoading, setIsLoading]=useState(false);
 
 }
