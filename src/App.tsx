@@ -8,11 +8,26 @@ import { FormResponse, UserData } from './types';
 
 
 const App = () => {
-  const [formData, setFormData]=useState(null);
+  const [formData, setFormData]=useState<FormResponse | null>(null);
   const [isLoading, setIsLoading]=useState(false);
-  const [error, setError]=useState(null);
-  const [userData, setUserData]=useState(null);
-  
+  const [error, setError]=useState<string | null>(null);
+  const [userData, setUserData]=useState<UserData | null>(null);
+  const handleLogin= async(userData:UserData)=>{
+    setIsLoading(false);
+    setError(null);
+    try{
+      await createUser(userData);
+      const formResponse= await getFormStructure(userData.rollNumber);
+      setUserData(userData);
+      setFormData(formResponse);
+
+    }catch(err:any){
+      setError(err.response?.data?.message || 'err trycatch ');
+      console.log('err login', err);
+    }finally{
+      setIsLoading(false);
+    }
+  }
   return (
    <>
 <div className="app-container">
