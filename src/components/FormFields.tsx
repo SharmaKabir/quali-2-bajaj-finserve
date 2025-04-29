@@ -9,7 +9,7 @@ interface FormFieldProps {
 export const DynamicField: React.FC<FormFieldProps> = ({ field }) => {
   const { register, formState: { errors } } = useFormContext();
   
-  // Create validation rules based on field metadata
+  
   const validation = {
     required: field.required ? field.validation?.message || 'This field is required' : false,
     minLength: field.minLength
@@ -26,7 +26,7 @@ export const DynamicField: React.FC<FormFieldProps> = ({ field }) => {
       : undefined
   };
   
-  // Render appropriate field based on type
+  
   let fieldElement;
   
   if (field.type === 'text' || field.type === 'tel' || field.type === 'email' || field.type === 'date') {

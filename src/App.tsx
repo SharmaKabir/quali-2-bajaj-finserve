@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './App.css';
 import Login from './components/Login';
 import DynamicForm from './components/DynamicForm';
@@ -11,7 +11,7 @@ const App = () => {
   const [formData, setFormData]=useState<FormResponse | null>(null);
   const [isLoading, setIsLoading]=useState(false);
   const [error, setError]=useState<string | null>(null);
-  const [userData, setUserData]=useState<UserData | null>(null);
+  const [_userData, setUserData]=useState<UserData | null>(null);
   const handleLogin= async(userData:UserData)=>{
     setIsLoading(false);
     setError(null);
