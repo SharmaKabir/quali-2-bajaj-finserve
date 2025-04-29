@@ -15,28 +15,40 @@ const App = () => {
   const handleLogin= async(userData:UserData)=>{
     setIsLoading(false);
     setError(null);
-    try{
-      await createUser(userData);
-      const formResponse= await getFormStructure(userData.rollNumber);
+    try {
+      
+      try {
+        await createUser(userData);
+      } catch (err: any) {
+        
+        if (err.response?.status !== 409) {
+          throw err;
+        }
+        
+        console.log('fetch directly');
+      }
+      
+    
+      const formResponse = await getFormStructure(userData.rollNumber);
+      
       setUserData(userData);
       setFormData(formResponse);
-
-    }catch(err:any){
-      setError(err.response?.data?.message || 'err trycatch ');
-      console.log('err login', err);
-    }finally{
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'err');
+      console.error('err in login:', err);
+    } finally {
       setIsLoading(false);
     }
   }
   return (
    <>
 <div className="app-container">
-{isLoading && <div className="loading">Loading...</div>}
+{isLoading && <div className="loading">loading wait</div>}
       
       {error && (
         <div className="error-container">
           <p className="error-message">{error}</p>
-          <button onClick={() => setError(null)}>Try Again</button>
+          <button onClick={() => setError(null)}>try-again</button>
         </div>
       )}
       
