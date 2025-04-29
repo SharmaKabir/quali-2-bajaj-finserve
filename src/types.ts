@@ -33,3 +33,12 @@ export interface FormSection {
     maxLength?: number;
     minLength?: number;
 }
+
+export interface UserData{
+    rollNumber: string;
+    name: string;
+}
+
+export interface FormValues {
+    [key: string]: string | boolean | string[];
+  }
