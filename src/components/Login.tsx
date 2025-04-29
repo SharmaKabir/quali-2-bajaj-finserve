@@ -9,5 +9,17 @@ const Login = ({ onLoginSuccess })=>{
     const [name, setName] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading]=useState(false);
+    
 
+
+
+    return(
+        <div className="login-container">
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                { if(error) && <div className='error-message'>{error}</div>}
+            </form>
+
+        </div>
+    )
 }
